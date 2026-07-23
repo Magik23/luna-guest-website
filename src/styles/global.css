@@ -336,8 +336,10 @@ p {
 
 .site-nav a {
     color: var(--luna-copy);
-    font-size: 0.9rem;
-    font-weight: 650;
+
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
 }
 
 .site-nav a:hover {
@@ -346,9 +348,10 @@ p {
 
 .language-link {
     color: var(--luna-navy-700);
-    font-size: 0.82rem;
+
+    font-size: 0.95rem;
     font-weight: 800;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
 }
 
@@ -417,16 +420,12 @@ p {
     padding-block: 96px 110px;
 
     background:
-        radial-gradient(
-            circle at 80% 12%,
+        radial-gradient(circle at 80% 12%,
             rgba(242, 183, 61, 0.15),
-            transparent 27%
-        ),
-        linear-gradient(
-            180deg,
+            transparent 27%),
+        linear-gradient(180deg,
             #ffffff 0%,
-            #f8fafc 100%
-        );
+            #f8fafc 100%);
 }
 
 .hero::after {
@@ -514,11 +513,9 @@ p {
 
     color: #eef4ff;
     background:
-        linear-gradient(
-            145deg,
+        linear-gradient(145deg,
             var(--luna-navy-900),
-            var(--luna-navy-950)
-        );
+            var(--luna-navy-950));
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: var(--radius-large);
     box-shadow: var(--shadow-large);
@@ -899,11 +896,9 @@ p {
 
     color: #ffffff;
     background:
-        radial-gradient(
-            circle at 92% 20%,
+        radial-gradient(circle at 92% 20%,
             rgba(242, 183, 61, 0.28),
-            transparent 26%
-        ),
+            transparent 26%),
         var(--luna-navy-900);
     border-radius: var(--radius-large);
     box-shadow: var(--shadow-large);

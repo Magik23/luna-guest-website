@@ -1,8 +1,5 @@
 ---
-import type {
-    HomeContent,
-    SiteLocale
-} from "../content/home";
+import type { HomeContent, SiteLocale } from "../content/home";
 
 interface Props {
     locale: SiteLocale;
@@ -10,19 +7,11 @@ interface Props {
     demoHref: string;
 }
 
-const {
-    locale,
-    copy,
-    demoHref
-} = Astro.props;
+const { locale, copy, demoHref } = Astro.props;
 
-const currentYear =
-    new Date().getFullYear();
+const currentYear = new Date().getFullYear();
 
-const alternatePath =
-    locale === "es"
-        ? "/"
-        : "/es/";
+const alternatePath = locale === "es" ? "/" : "/es/";
 ---
 
 <footer class="site-footer">
@@ -69,21 +58,17 @@ const alternatePath =
                 lang={locale === "es" ? "en" : "es"}
                 hreflang={locale === "es" ? "en" : "es"}
             >
-                {locale === "es"
-                    ? "English"
-                    : "Español"}
+                {locale === "es" ? "English" : "Español"}
             </a>
         </nav>
     </div>
 
     <div class="container footer-bottom">
         <span>
-            © {currentYear} Luna Guest.
+            © {currentYear} Luna Guest.{" "}
             {copy.rights}
         </span>
 
-        <span>
-            Guest operations, simplified.
-        </span>
+        <span> Guest operations, simplified. </span>
     </div>
 </footer>
