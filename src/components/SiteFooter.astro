@@ -1,0 +1,89 @@
+---
+import type {
+    HomeContent,
+    SiteLocale
+} from "../content/home";
+
+interface Props {
+    locale: SiteLocale;
+    copy: HomeContent["footer"];
+    demoHref: string;
+}
+
+const {
+    locale,
+    copy,
+    demoHref
+} = Astro.props;
+
+const currentYear =
+    new Date().getFullYear();
+
+const alternatePath =
+    locale === "es"
+        ? "/"
+        : "/es/";
+---
+
+<footer class="site-footer">
+    <div class="container footer-main">
+        <div class="footer-brand">
+            <div class="footer-brand-row">
+                <img
+                    src="/brand/luna-guest-icon-512x512.png"
+                    alt=""
+                    width="54"
+                    height="54"
+                />
+
+                <strong>Luna Guest</strong>
+            </div>
+
+            <p>{copy.body}</p>
+        </div>
+
+        <nav
+            class="footer-links"
+            aria-label={locale === "es"
+                ? "Navegación del pie"
+                : "Footer navigation"}
+        >
+            <a href="#product">
+                {copy.product}
+            </a>
+
+            <a href="#how-it-works">
+                {copy.howItWorks}
+            </a>
+
+            <a href="#outcomes">
+                {copy.outcomes}
+            </a>
+
+            <a href={demoHref}>
+                {copy.contact}
+            </a>
+
+            <a
+                href={alternatePath}
+                lang={locale === "es" ? "en" : "es"}
+                hreflang={locale === "es" ? "en" : "es"}
+            >
+                {locale === "es"
+                    ? "English"
+                    : "Español"}
+            </a>
+        </nav>
+    </div>
+
+    <div class="container footer-bottom">
+        <span>
+            © {currentYear} Luna Guest.
+            {copy.rights}
+        </span>
+
+        <span>
+            Guest operations, simplified.
+        </span>
+    </div>
+</footer>

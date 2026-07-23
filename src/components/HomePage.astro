@@ -1,0 +1,318 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "./SiteHeader.astro";
+import SiteFooter from "./SiteFooter.astro";
+
+import {
+    homeContent,
+    type SiteLocale
+} from "../content/home";
+
+interface Props {
+    locale: SiteLocale;
+}
+
+const {
+    locale
+} = Astro.props;
+
+const copy =
+    homeContent[locale];
+
+const canonicalPath =
+    locale === "es"
+        ? "/es/"
+        : "/";
+
+const alternatePath =
+    locale === "es"
+        ? "/"
+        : "/es/";
+
+const demoHref =
+    `mailto:hello.lunaguest@gmail.com?subject=${encodeURIComponent(
+        copy.cta.emailSubject
+    )}`;
+---
+
+<BaseLayout
+    locale={locale}
+    title={copy.meta.title}
+    description={copy.meta.description}
+    canonicalPath={canonicalPath}
+    alternatePath={alternatePath}
+>
+    <SiteHeader
+        locale={locale}
+        copy={copy.header}
+        demoHref={demoHref}
+    />
+
+    <main id="main-content">
+        <section
+            class="hero"
+            id="product"
+        >
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <span class="eyebrow">
+                        {copy.hero.eyebrow}
+                    </span>
+
+                    <h1>
+                        {copy.hero.title}
+                    </h1>
+
+                    <p class="hero-lead">
+                        {copy.hero.body}
+                    </p>
+
+                    <div class="hero-actions">
+                        <a
+                            class="button button-primary"
+                            href={demoHref}
+                        >
+                            {copy.hero.primaryAction}
+                        </a>
+
+                        <a
+                            class="button button-secondary"
+                            href="#how-it-works"
+                        >
+                            {copy.hero.secondaryAction}
+                        </a>
+                    </div>
+
+                    <p class="audience-note">
+                        {copy.hero.audience}
+                    </p>
+                </div>
+
+                <div
+                    class="hero-visual"
+                    aria-label={copy.hero.visual.responseLabel}
+                >
+                    <div class="interface-shell">
+                        <div class="interface-topbar">
+                            <div class="interface-brand">
+                                <img
+                                    src="/brand/luna-guest-icon-512x512.png"
+                                    alt=""
+                                    width="34"
+                                    height="34"
+                                />
+
+                                <span>Luna Guest</span>
+                            </div>
+
+                            <span class="live-status">
+                                {copy.hero.visual.status}
+                            </span>
+                        </div>
+
+                        <div class="guest-message">
+                            <span class="interface-label">
+                                {copy.hero.visual.guestLabel}
+                            </span>
+
+                            <p>
+                                {copy.hero.visual.guestMessage}
+                            </p>
+                        </div>
+
+                        <div class="operational-response">
+                            <span class="interface-label">
+                                {copy.hero.visual.responseLabel}
+                            </span>
+
+                            <p>
+                                {copy.hero.visual.responseMessage}
+                            </p>
+
+                            <div class="operation-chips">
+                                {copy.hero.visual.chips.map(
+                                    (chip) => (
+                                        <span class="operation-chip">
+                                            {chip}
+                                        </span>
+                                    )
+                                )}
+                            </div>
+                        </div>
+
+                        <div class="opportunity-card">
+                            <div>
+                                <p class="opportunity-title">
+                                    {copy.hero.visual.opportunity}
+                                </p>
+
+                                <p class="opportunity-subtitle">
+                                    {copy.hero.visual.opportunityDetail}
+                                </p>
+                            </div>
+
+                            <span class="status-badge">
+                                {copy.hero.visual.opportunityStatus}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section
+            class="section section-soft"
+            id="outcomes"
+        >
+            <div class="container">
+                <div class="section-heading">
+                    <span class="eyebrow">
+                        {copy.outcomes.eyebrow}
+                    </span>
+
+                    <h2>
+                        {copy.outcomes.title}
+                    </h2>
+
+                    <p>
+                        {copy.outcomes.body}
+                    </p>
+                </div>
+
+                <div class="outcomes-grid">
+                    {copy.outcomes.items.map(
+                        (item, index) => (
+                            <article class="outcome-card">
+                                <span class="outcome-number">
+                                    {String(index + 1).padStart(2, "0")}
+                                </span>
+
+                                <h3>{item.title}</h3>
+
+                                <p>{item.body}</p>
+                            </article>
+                        )
+                    )}
+                </div>
+            </div>
+        </section>
+
+        <section
+            class="section"
+            id="how-it-works"
+        >
+            <div class="container">
+                <div class="section-heading">
+                    <span class="eyebrow">
+                        {copy.workflow.eyebrow}
+                    </span>
+
+                    <h2>
+                        {copy.workflow.title}
+                    </h2>
+
+                    <p>
+                        {copy.workflow.body}
+                    </p>
+                </div>
+
+                <div class="workflow-grid">
+                    {copy.workflow.items.map(
+                        (item) => (
+                            <article class="workflow-step">
+                                <div class="workflow-label">
+                                    {item.label}
+                                </div>
+
+                                <h3>{item.title}</h3>
+
+                                <p>{item.body}</p>
+                            </article>
+                        )
+                    )}
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-soft">
+            <div class="container product-grid">
+                <div class="product-copy">
+                    <span class="eyebrow">
+                        {copy.product.eyebrow}
+                    </span>
+
+                    <h2>
+                        {copy.product.title}
+                    </h2>
+
+                    <p>
+                        {copy.product.body}
+                    </p>
+
+                    <ul class="capability-list">
+                        {copy.product.capabilities.map(
+                            (capability) => (
+                                <li>{capability}</li>
+                            )
+                        )}
+                    </ul>
+                </div>
+
+                <div class="operations-panel">
+                    <div class="panel-header">
+                        <span class="panel-title">
+                            {copy.product.panelTitle}
+                        </span>
+
+                        <span class="panel-status">
+                            {copy.product.panelStatus}
+                        </span>
+                    </div>
+
+                    <div class="panel-grid">
+                        {copy.product.cards.map(
+                            (card) => (
+                                <article class="panel-card">
+                                    <strong>{card.title}</strong>
+                                    <span>{card.body}</span>
+                                </article>
+                            )
+                        )}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section
+            class="cta-section"
+            id="contact"
+        >
+            <div class="container">
+                <div class="cta-panel">
+                    <div>
+                        <h2>
+                            {copy.cta.title}
+                        </h2>
+
+                        <p>
+                            {copy.cta.body}
+                        </p>
+                    </div>
+
+                    <a
+                        class="button button-primary"
+                        href={demoHref}
+                    >
+                        {copy.cta.action}
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <SiteFooter
+        locale={locale}
+        copy={copy.footer}
+        demoHref={demoHref}
+    />
+</BaseLayout>

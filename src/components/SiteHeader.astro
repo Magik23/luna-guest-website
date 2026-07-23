@@ -1,0 +1,128 @@
+---
+import type {
+    HomeContent,
+    SiteLocale
+} from "../content/home";
+
+interface Props {
+    locale: SiteLocale;
+    copy: HomeContent["header"];
+    demoHref: string;
+}
+
+const {
+    locale,
+    copy,
+    demoHref
+} = Astro.props;
+
+const homePath =
+    locale === "es"
+        ? "/es/"
+        : "/";
+
+const alternatePath =
+    locale === "es"
+        ? "/"
+        : "/es/";
+---
+
+<header class="site-header">
+    <div class="container header-inner">
+        <a
+            class="brand-link"
+            href={homePath}
+            aria-label="Luna Guest"
+        >
+            <img
+                class="brand-logo"
+                src="/brand/luna-guest-logo-primary-light-transparent.png"
+                alt="Luna Guest — Guest operations, simplified"
+                width="2048"
+                height="512"
+            />
+        </a>
+
+        <div class="header-actions">
+            <div class="desktop-navigation">
+                <nav
+                    class="site-nav"
+                    aria-label={locale === "es"
+                        ? "Navegación principal"
+                        : "Primary navigation"}
+                >
+                    <a href="#product">
+                        {copy.product}
+                    </a>
+
+                    <a href="#how-it-works">
+                        {copy.howItWorks}
+                    </a>
+
+                    <a href="#outcomes">
+                        {copy.outcomes}
+                    </a>
+
+                    <a href="#contact">
+                        {copy.contact}
+                    </a>
+                </nav>
+            </div>
+
+            <a
+                class="language-link"
+                href={alternatePath}
+                lang={locale === "es" ? "en" : "es"}
+                hreflang={locale === "es" ? "en" : "es"}
+            >
+                {copy.languageLabel}
+            </a>
+
+            <div class="desktop-navigation">
+                <a
+                    class="button button-primary"
+                    href={demoHref}
+                >
+                    {copy.demo}
+                </a>
+            </div>
+
+            <details class="mobile-nav">
+                <summary>
+                    <span aria-hidden="true">☰</span>
+                    <span>{copy.menu}</span>
+                </summary>
+
+                <nav
+                    class="mobile-menu"
+                    aria-label={locale === "es"
+                        ? "Navegación móvil"
+                        : "Mobile navigation"}
+                >
+                    <a href="#product">
+                        {copy.product}
+                    </a>
+
+                    <a href="#how-it-works">
+                        {copy.howItWorks}
+                    </a>
+
+                    <a href="#outcomes">
+                        {copy.outcomes}
+                    </a>
+
+                    <a href="#contact">
+                        {copy.contact}
+                    </a>
+
+                    <a
+                        class="button button-primary"
+                        href={demoHref}
+                    >
+                        {copy.demo}
+                    </a>
+                </nav>
+            </details>
+        </div>
+    </div>
+</header>
