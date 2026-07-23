@@ -2,6 +2,8 @@
 
 import { defineConfig } from "astro/config";
 
+import cloudflare from "@astrojs/cloudflare";
+
 /**
  * Luna Guest public website configuration.
  *
@@ -10,5 +12,6 @@ import { defineConfig } from "astro/config";
  * reliable base for canonical and social-sharing URLs.
  */
 export default defineConfig({
-    site: "https://lunaguest.com"
+  site: "https://lunaguest.com",
+  adapter: cloudflare()
 });
